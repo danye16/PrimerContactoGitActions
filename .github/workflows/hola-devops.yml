@@ -22,9 +22,15 @@ jobs:
         uses: actions/checkout@v4
       
       # Paso 2: Ejecutar comando de shell
-      - name: Imprimir mensaje de bienvenida
-        run: echo "¡Hola DevOps!"
-      
+      - name: Imprimir mensaje personalizado
+        env:
+          MENSAJE: "¡Hola DevOps!"
+          AUTOR: "Daniel"
+        run: |
+          echo "$MENSAJE"
+          echo "Creado por: $AUTOR"
+
+
       # Paso 3: Mostrar información del sistema
       - name: Mostrar información del sistema
         run: |
@@ -33,3 +39,10 @@ jobs:
           echo "Directorio actual: $(pwd)"
           echo "Fecha y hora: $(date)"
           echo "Versión de Ubuntu: $(lsb_release -d)"
+
+      # Paso 4: Crear un archivo
+      - name: Crear y mostrar archivo de saludo
+        run: |
+          echo "Usar linux no te hace mejor" > saludo.txt
+          echo "Archivo 'saludo.txt' creado exitosamente"
+          cat saludo.txt
